@@ -77,24 +77,10 @@ class MyHomePage extends StatelessWidget {
                                 Dimensions.circularradius15),
                             color: AppColors.maincolor,
                           ),
-                          child: GestureDetector(
-                            onTap: () => {
-                        if (popularprod.totalItems >= 1)
-                          {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const CartPage()))
-                          }
-                        else
-                          {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const EmptyCartPage()))
-                          }
-                      },
-                            child: Icon(
-                              Icons.shopping_cart_outlined,
-                              color: Colors.white,
-                              size: Dimensions.width20,
-                            ),
+                          child: Icon(
+                            Icons.mic,
+                            color: Colors.white,
+                            size: Dimensions.width20,
                           ),
                         ),
                       ],
