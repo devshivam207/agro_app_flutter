@@ -2,11 +2,10 @@ import 'package:betting_app/cart_page.dart';
 import 'package:betting_app/colors.dart';
 import 'package:betting_app/dimensions.dart';
 import 'package:betting_app/homepagebody.dart';
+import 'package:betting_app/models/cart_controller.dart';
 import 'package:betting_app/models/popular_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-
-import 'empty_cart.dart';
 
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -15,9 +14,9 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: GetBuilder<PopularProductsController>(builder: (popularprod){
+        body: GetBuilder<PopularProductsController>(builder: (popularprod) {
           return SafeArea(
-          child: Column(
+              child: Column(
             children: [
               Container(
                 margin: EdgeInsetsDirectional.only(top: Dimensions.margin10),
@@ -93,6 +92,52 @@ class MyHomePage extends StatelessWidget {
               ),
             ],
           ));
-        }));
-        }
+        }),
+        bottomNavigationBar: GetBuilder<CartController>(
+          builder: (controller) {
+            return Container(
+              height: Dimensions.height50,
+              decoration: BoxDecoration(
+                  color: AppColors.maincolor,
+                  borderRadius:
+                      BorderRadius.circular(Dimensions.circularradius15)),
+              child: GetBuilder<CartController>(
+                builder: (cartcontroller) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.home,
+                        color: Colors.white,
+                        size: Dimensions.height20,
+                      ),
+                      Icon(
+                        Icons.archive,
+                        color: Colors.white,
+                        size: Dimensions.height20,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const CartPage()));
+                          },
+                          child: Icon(
+                            Icons.shopping_cart,
+                            color: Colors.white,
+                            size: Dimensions.height20,
+                          )),
+                      Icon(
+                        Icons.person,
+                        color: Colors.white,
+                        size: Dimensions.height20,
+                      ),
+                    ],
+                  );
+                },
+              ),
+            );
+          },
+        ));
+  }
 }
+
